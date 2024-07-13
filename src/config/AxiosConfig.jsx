@@ -7,8 +7,8 @@ const axiosInstance = axios.create({
     'Content-Type': 'application/json',
   },
   auth: {
-    username: 'user', 
-    password: '1cd94260-2570-496a-92c8-c28855c7d217', 
+    username: 'admin', 
+    password: 'admin',
   },
 //   withCredentials: true,
 });
