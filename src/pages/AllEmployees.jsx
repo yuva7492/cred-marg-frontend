@@ -1,4 +1,3 @@
-// src/pages/AllEmployees.jsx
 import  { useEffect, useState } from 'react';
 
 import { Table, Container } from 'react-bootstrap';
@@ -14,7 +13,7 @@ const AllEmployees = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axiosInstance.get('/employee/all'); // Example endpoint
+      const response = await axiosInstance.get('/employee/all');
       setEmployees(response.data);
     } catch (error) {
       setError(error.response ? error.response.data.message : error.message);

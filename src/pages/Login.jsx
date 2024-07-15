@@ -1,53 +1,67 @@
-import  { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Button, Form } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function Login() {
+const Login = () => {
+  const [credentials, setCredentials] = useState({ username: '', password: '' });
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    // Add your authentication logic here
-    if (username === 'admin' && password === 'password') {
-      // If authentication is successful, navigate to HomePage
-      navigate('/HomePage');
-    } else {
-      // If authentication fails, set an error message
-      setError('Invalid username or password');
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setCredentials({ ...credentials, [name]: value });
+  };
+
+  const handleOnclick = async (e) => {
+   e.preventDefault();
+    const { username, password } = credentials;
+    if(username==='admin' && password==='admin'){
+      navigate('/create-employee');
+      console.log(username,password)
+    }
+    else{
+      console.log(username,password)
+      toast.error('Invalid credentials');
     }
   };
 
+     
+
   return (
-    <Form onSubmit={handleLogin}>
+    <>
+    <header className='bg-dark  text-center'  ><h1 style={{color:'white'}}>Cred Marg</h1></header>
+   
+    <Form className='d-flex flex-column align-items-center mt-5'>
       <Form.Group className="mb-3" controlId="formBasicUsername">
         <Form.Label>Username</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Enter username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+        <Form.Control 
+          type="text" 
+          name="username" 
+          placeholder="Enter username" 
+          value={credentials.username} 
+          onChange={handleChange} 
+          required 
         />
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+        <Form.Control 
+          type="password" 
+          name="password" 
+          placeholder="Password" 
+          value={credentials.password} 
+          onChange={handleChange} 
+          required 
         />
       </Form.Group>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <Button variant="primary" type="submit">
+      <Button variant="primary" type="submit" onClick={handleOnclick}>
         Login
       </Button>
     </Form>
+    </>
   );
-}
+};
 
 export default Login;

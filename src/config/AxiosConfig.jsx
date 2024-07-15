@@ -10,7 +10,6 @@ const axiosInstance = axios.create({
     username: 'admin', 
     password: 'admin',
   },
-//   withCredentials: true,
 });
 
 export default axiosInstance;

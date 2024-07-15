@@ -1,8 +1,9 @@
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Navbar = () => {
+  const navigate=useNavigate();
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark justify-content-center">
       <div className="container">
@@ -23,6 +24,9 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/emails">All email records</Link>
+            </li>
+            <li>
+              <button className="btn btn-danger" onClick={() => navigate('/login')}>Logout</button>
             </li>
           </ul>
         </div>
